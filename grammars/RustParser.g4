@@ -51,7 +51,7 @@ statement :
     ;
 
 letStatement :
-   outerAttribute* KW_LET varName=patternNoTopAlt ( COLON type )? (EQ rhs=expression )? SEMI;
+   outerAttribute* KW_LET varName=patternNoTopAlt ( COLON varType=type )? (EQ rhs=expression )? SEMI;
 
 expressionStatement :
      expressionWithoutBlock SEMI #ExprStmtWithoutBlock
@@ -72,8 +72,8 @@ pattern : '|'? patternNoTopAlt ( '|' patternNoTopAlt )* ;
 patternNoTopAlt : patternWithoutRange;
 
 patternWithoutRange :
-      literalPattern    #litPat
-   | identifierPattern  #identPat
+      literalPattern    #LitPat
+   | identifierPattern  #IdentPat
    /*| WildcardPattern
    | RestPattern
    | ReferencePattern
@@ -89,7 +89,7 @@ patternWithoutRange :
 identifierPattern : KW_REF? KW_MUT? IDENTIFIER ('@' patternNoTopAlt)?;
 
 literalPattern :
-      BOOLEAN_LITERAL
+     BOOLEAN_LITERAL
    | CHAR_LITERAL
    | BYTE_LITERAL
    | STRING_LITERAL
