@@ -96,10 +96,10 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.oxide.ferric.Main</mainClass>
+                            <mainClass>com.oxide.ferric.App</mainClass>
                         </manifest>
                         <manifestEntries>
-                            <Bundle-Name>Ferric Oxide</Bundle-Name>
+                            <Bundle-Name>FerricOxide</Bundle-Name>
                             <Bundle-Symbolic-Name>com.oxide.ferric.rs</Bundle-Symbolic-Name>
                             <Bundle-Version>${graalvm.version}</Bundle-Version>
                             <Bundle-RequireCapability>org.graalvm; filter:="(&amp;(graalvm_version=${graalvm.version}))"</Bundle-RequireCapability>

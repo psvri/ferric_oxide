@@ -4,12 +4,17 @@ import com.oxide.ferric.nodes.RustRootNode;
 import com.oxide.ferric.parser.RustLangParser;
 import com.oracle.truffle.api.frame.FrameDescriptor;
 
-public class Main {
-    public static void main(String[] args) {
+import java.io.*;
 
-        var builder =  FrameDescriptor.newBuilder(1);
+public class App {
+    public static void main(String[] args) throws IOException {
 
-        var parser = RustLangParser.parse("let a = 123;a + 20000;", builder);
+
+        var builder =  FrameDescriptor.newBuilder();
+
+        var reader = new BufferedReader(new FileReader(args[0]));
+
+        var parser = RustLangParser.parse(reader, builder);
         FrameDescriptor frameDescriptor = builder.build();
         System.out.println(parser);
 
