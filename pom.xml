@@ -11,6 +11,7 @@
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <graalvm.version>22.1.0</graalvm.version>
         <argLine>-D"graalvm.locatorDisabled=true"  --add-exports org.graalvm.truffle/com.oracle.truffle.api.nodes=ALL-UNNAMED --add-exports org.graalvm.truffle/com.oracle.truffle.api=ALL-UNNAMED --add-exports org.graalvm.truffle/com.oracle.truffle.api.frame=ALL-UNNAMED</argLine>
     </properties>
 
@@ -87,6 +88,24 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.2</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.oxide.ferric.Main</mainClass>
+                        </manifest>
+                        <manifestEntries>
+                            <Bundle-Name>Ferric Oxide</Bundle-Name>
+                            <Bundle-Symbolic-Name>com.oxide.ferric.rs</Bundle-Symbolic-Name>
+                            <Bundle-Version>${graalvm.version}</Bundle-Version>
+                            <Bundle-RequireCapability>org.graalvm; filter:="(&amp;(graalvm_version=${graalvm.version}))"</Bundle-RequireCapability>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
             </plugin>
         </plugins>
     </build>
